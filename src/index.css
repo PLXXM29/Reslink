@@ -1,0 +1,82 @@
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+html,body{margin:0;padding:0;}
+body{font-family:'Plus Jakarta Sans','Noto Sans Thai',sans-serif;color:#1A1D24;background:#F7F8FA;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-thumb{background:#D7DBE2;border-radius:8px;border:2px solid #F7F8FA;}
+::-webkit-scrollbar-track{background:transparent;}
+input,button,textarea,select{font-family:inherit;}
+a{color:inherit;}
+
+@keyframes rsFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes rsToast{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+@keyframes rsSpin{to{transform:rotate(360deg);}}
+@keyframes rsPop{from{opacity:0;transform:scale(.96) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+/* ---- interaction utilities (replace the design's style-hover / style-focus) ---- */
+.rs-input{transition:border-color .15s ease, box-shadow .15s ease;}
+.rs-input:focus{border-color:#0EA5A4 !important;box-shadow:0 0 0 3px rgba(14,165,164,.12);}
+.rs-input.amber:focus{border-color:#F59E0B !important;box-shadow:0 0 0 3px rgba(245,158,11,.12);}
+
+.rs-btn-primary{transition:background .15s ease, transform .15s ease;}
+.rs-btn-primary:hover{background:#0C8F8E !important;}
+.rs-btn-line{transition:background .15s ease;}
+.rs-btn-line:hover{background:#05B14C !important;}
+.rs-btn-dark{transition:background .15s ease;}
+.rs-btn-dark:hover{background:#000 !important;}
+.rs-btn-outline{transition:border-color .15s ease, color .15s ease, background .15s ease;}
+.rs-btn-outline:hover{border-color:#0EA5A4 !important;color:#0C8F8E !important;}
+.rs-btn-soft{transition:background .15s ease, color .15s ease;}
+.rs-btn-soft:hover{background:#E8EBEF !important;}
+.rs-btn-soft-teal{transition:background .15s ease, color .15s ease;}
+.rs-btn-soft-teal:hover{background:#E6FAF8 !important;color:#0C8F8E !important;}
+.rs-btn-chip{transition:background .15s ease, color .15s ease;}
+.rs-btn-chip:hover{background:#0EA5A4 !important;color:#fff !important;}
+
+.rs-navbtn{transition:background .12s ease;}
+.rs-navbtn:hover{background:#F4F6F8;}
+.rs-logout:hover{background:#FEF2F2 !important;color:#DC2626 !important;}
+
+.rs-navlink{transition:background .12s ease, color .12s ease;}
+.rs-navlink:hover{background:#F4F6F8;color:#1A1D24;}
+.rs-footlink{transition:color .12s ease;}
+.rs-footlink:hover{color:#fff !important;}
+
+.rs-lift{transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+.rs-lift:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,24,40,.10);border-color:#D6F2F1;}
+.rs-lift-room:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(16,24,40,.10);}
+.rs-lift-soft:hover{border-color:#D6F2F1;transform:translateY(-2px);}
+.rs-facility{transition:border-color .15s ease;}
+.rs-facility:hover{border-color:#D6F2F1;}
+.rs-iconbtn{transition:background .15s ease;}
+.rs-iconbtn:hover{background:#F4F6F8 !important;}
+.rs-uploader{transition:border-color .15s ease;}
+.rs-uploader:hover{border-color:#0EA5A4 !important;}
+.rs-row:hover{background:#FAFBFC;}
+
+@media (max-width:980px){
+  .rs-hero{grid-template-columns:1fr !important;gap:36px !important;}
+  .rs-2col{grid-template-columns:1fr !important;gap:30px !important;}
+  .rs-gal{grid-template-columns:repeat(2,1fr) !important;}
+  .rs-foot{grid-template-columns:1fr 1fr !important;}
+  #pubnav{display:none !important;}
+  .rs-side{width:66px !important;}
+  .rs-side .lbl{display:none !important;}
+  .rs-side .rs-navbtn{justify-content:center;}
+  .rs-2c{grid-template-columns:1fr !important;}
+  .rs-kanban{grid-template-columns:1fr !important;}
+}
+@media (max-width:1150px){
+  .rs-kpi{grid-template-columns:repeat(3,1fr) !important;}
+}
+@media (max-width:760px){
+  .rs-kpi{grid-template-columns:repeat(2,1fr) !important;}
+  .rs-search{display:none !important;}
+  .rs-main-pad{padding-left:18px !important;padding-right:18px !important;}
+}
+@media (max-width:640px){
+  .rs-foot{grid-template-columns:1fr !important;}
+  .rs-hero h1{font-size:33px !important;}
+}
+@media (max-width:480px){
+  .rs-kpi{grid-template-columns:1fr 1fr !important;}
+}
