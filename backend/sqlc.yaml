@@ -1,0 +1,24 @@
+# sqlc.yaml — config บอก sqlc ว่าจะอ่าน SQL จากไหน แล้ว gen Go code ออกตรงไหน
+#
+# ⚠️ เฟส 0 ยัง "ไม่ได้ใช้" ไฟล์นี้ (ยังไม่มี migration/query ให้อ่าน)
+#    วางไว้ตามโครงก่อน พอถึงเฟส 1 ที่เริ่มมีตาราง เราจะรัน `sqlc generate` ใช้ค่าตรงนี้
+version: "2"
+
+sql:
+  - engine: "postgresql" # ใช้ภาษา SQL ของ Postgres (sqlc รองรับหลาย engine)
+
+    # schema = บอก sqlc ว่า "หน้าตาตารางเป็นยังไง" เพื่อให้รู้ type ของแต่ละ column
+    # เราชี้ไปที่โฟลเดอร์ migrations เลย → sqlc อ่านไฟล์ .up.sql เข้าใจโครงตารางเอง
+    # (ไม่ต้องเขียนนิยามตารางซ้ำสองที่ — migration เป็นแหล่งความจริงเดียว)
+    schema: "internal/db/migrations"
+
+    # queries = โฟลเดอร์เก็บไฟล์ SQL ที่เราเขียนเอง (SELECT/INSERT/...) ให้ sqlc แปลงเป็นฟังก์ชัน Go
+    queries: "internal/db/queries"
+
+    gen:
+      go:
+        package: "db" # ชื่อ Go package ของโค้ดที่ gen ออกมา
+        out: "internal/db/sqlc" # โฟลเดอร์ปลายทางของโค้ดที่ gen (ห้ามแก้มือ)
+        sql_package: "pgx/v5" # ให้ gen โค้ดที่ใช้ driver pgx/v5 (ตรงกับที่เราต่อ DB)
+        emit_json_tags: true # ใส่ `json:"..."` ให้ struct เผื่อใช้ทำ API ทีหลัง
+        emit_pointers_for_null_types: true # column ที่ NULL ได้ → ใช้ pointer (แยก "ว่าง" กับ "ศูนย์")

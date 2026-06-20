@@ -1,0 +1,14 @@
+# บังคับการขึ้นบรรทัด (line ending) ให้เหมือนกันทั้งทีม
+# กันปัญหา CRLF (Windows) กับ LF (Mac/Linux) ตีกันเวลาทำงานข้าม OS
+
+# ไฟล์ข้อความทั้งหมด: เก็บใน repo เป็น LF เสมอ
+* text=auto eol=lf
+
+# ไฟล์ไบนารี: ห้าม git แตะ/แปลงการขึ้นบรรทัด
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

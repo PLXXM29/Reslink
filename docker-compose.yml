@@ -1,0 +1,28 @@
+# docker-compose.yml — สั่ง Docker เตรียม PostgreSQL สำหรับ dev
+#
+# ใช้ทำไม: เพื่อนร่วมทีมเปิดมาแล้วรัน `docker compose up -d` ครั้งเดียว
+#          ได้ Postgres 16 + database reslink_dev พร้อมใช้ทันที
+#          ไม่ต้องลง Postgres เอง ไม่ต้องสร้าง database เอง เวอร์ชันตรงกันทุกคน
+
+services:
+  db:
+    image: postgres:16 # Postgres เวอร์ชัน 16 (ล็อกไว้ให้ทุกคนเหมือนกัน)
+    container_name: reslink_db
+    environment:
+      # ค่าพวกนี้สร้าง user/password/database ให้อัตโนมัติตอน container เกิดครั้งแรก
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres # password สำหรับ dev เท่านั้น (ไม่ใช่ของจริง production)
+      POSTGRES_DB: reslink_dev
+    ports:
+      - "5432:5432" # เปิดพอร์ต 5432 ให้โค้ด Go ต่อได้เหมือน Postgres ปกติ
+    volumes:
+      - reslink_pgdata:/var/lib/postgresql/data # เก็บข้อมูลถาวร ปิด container แล้วไม่หาย
+    healthcheck:
+      # ให้ Docker เช็คว่า DB พร้อมรับ connection จริงหรือยัง (ไม่ใช่แค่ container เปิด)
+      test: ["CMD-SHELL", "pg_isready -U postgres -d reslink_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  reslink_pgdata: # ประกาศ volume ที่ใช้เก็บข้อมูล Postgres

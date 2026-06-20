@@ -1,0 +1,6 @@
+# ของเฉพาะ frontend ที่ไม่ commit (สร้างใหม่ได้ด้วย npm install / vite build)
+node_modules
+dist
+dist-ssr
+*.local
+.vite

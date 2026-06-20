@@ -1,8 +1,4 @@
-node_modules
-dist
-dist-ssr
-*.local
-.vite
+# ของกลางทั้ง repo (ของเฉพาะ frontend/backend อยู่ใน .gitignore ของแต่ละโฟลเดอร์)
 .DS_Store
 
 # editor / tooling

@@ -1,0 +1,6 @@
+# ความลับ — ห้าม commit เด็ดขาด (มี password DB อยู่ข้างใน)
+.env
+
+# ไฟล์ binary ที่ build ออกมาจากโค้ด Go
+*.exe
+/bin/
